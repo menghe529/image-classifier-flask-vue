@@ -1,0 +1,65 @@
+// Home.vue
+
+<template>
+<div>
+<div class="main">
+  <Echart></Echart>
+
+  <div class="title">
+    <h3>Image Classifier</h3>
+
+    <!-- <p>
+      <small>A web app demo</small>
+    </p> -->
+  </div>
+
+  <div class="panel">
+    <input id="file-upload" class="hidden" type="file" accept="image/x-png,image/gif,image/jpeg" />
+    <label for="file-upload" id="file-drag" class="upload-box">
+      <div id="upload-caption">Drop image here or click to select</div>
+      <img id="image-preview" class="hidden" />
+    </label>
+  </div>
+  <div style="margin-bottom: 2rem;">
+    <input type="button" value="Submit" class="button" onclick="submitImage();" />
+    <input type="button" value="Clear" class="button" onclick="clearImage();" />
+  </div>
+
+  <div id="image-box">
+    <img id="image-display" />
+    <div id="pred-result" class="hidden"></div>
+    <svg id="loader" class="hidden" viewBox="0 0 32 32" width="32" height="32">
+      <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
+    </svg>
+  </div>
+
+  <!-- <div id="echarts" ref="echarts"></div> -->
+</div>
+
+
+
+</div>
+</template>
+
+<script>
+  // import * as from "../js/Home.js"
+  import Echart from "./Echart.vue"
+  export default{
+    mounted() {
+      const s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = '../../static/js/Home.js';
+      document.body.appendChild(s);
+    },
+
+    components:{
+      Echart
+    }
+  }
+</script>
+
+<style src="../../static/css/Home.css"></style>
+
+
+
+
