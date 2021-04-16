@@ -37,6 +37,7 @@ var imageDisplay = document.getElementById("image-display");
 var uploadCaption = document.getElementById("upload-caption");
 var predResult = document.getElementById("pred-result");
 var loader = document.getElementById("loader");
+var mychart = document.getElementById("mychart");
 
 //========================================================================
 // Main button events
@@ -44,7 +45,8 @@ var loader = document.getElementById("loader");
 
 function submitImage() {
   // action for the submit button
-  console.log("submit");
+  // console.log("submit");
+  hide(mychart);
 
   if (!imageDisplay.src || !imageDisplay.src.startsWith("data")) {
     window.alert("Please select an image before submit.");
@@ -60,17 +62,21 @@ function submitImage() {
 
 function clearImage() {
   // reset selected files
+  // this.isShow = false
+  // console.log(isShow)
   fileSelect.value = "";
 
   // remove image sources and hide them
   imagePreview.src = "";
   imageDisplay.src = "";
   predResult.innerHTML = "";
+  xdata = ''
 
   hide(imagePreview);
   hide(imageDisplay);
   hide(loader);
   hide(predResult);
+  hide(mychart);
   show(uploadCaption);
 
   imageDisplay.classList.remove("loading");
@@ -123,7 +129,10 @@ function predictImage(image) {
     .then(resp => {
       if (resp.ok)
         resp.json().then(data => {
+          console.log(data.result)
           displayResult(data);
+          result = data.result;
+          console.log(result)
           // drawEcharts();
         });
     })
@@ -158,3 +167,10 @@ function show(el) {
   el.classList.remove("hidden");
 }
 
+// function drawEcharts(data){
+//   console.log(data)
+// }
+
+// module.exports = {
+//   drawEcharts
+// }

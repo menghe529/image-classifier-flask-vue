@@ -37,6 +37,7 @@ var imageDisplay = document.getElementById("image-display");
 var uploadCaption = document.getElementById("upload-caption");
 var predResult = document.getElementById("pred-result");
 var loader = document.getElementById("loader");
+var mychart = document.getElementById("mychart");
 
 //========================================================================
 // Main button events
@@ -44,7 +45,8 @@ var loader = document.getElementById("loader");
 
 function submitImage() {
   // action for the submit button
-  console.log("submit");
+  // console.log("submit");
+  hide(mychart);
 
   if (!imageDisplay.src || !imageDisplay.src.startsWith("data")) {
     window.alert("Please select an image before submit.");
@@ -60,17 +62,21 @@ function submitImage() {
 
 function clearImage() {
   // reset selected files
+  // this.isShow = false
+  // console.log(isShow)
   fileSelect.value = "";
 
   // remove image sources and hide them
   imagePreview.src = "";
   imageDisplay.src = "";
   predResult.innerHTML = "";
+  xdata = ''
 
   hide(imagePreview);
   hide(imageDisplay);
   hide(loader);
   hide(predResult);
+  hide(mychart);
   show(uploadCaption);
 
   imageDisplay.classList.remove("loading");
@@ -123,8 +129,11 @@ function predictImage(image) {
     .then(resp => {
       if (resp.ok)
         resp.json().then(data => {
+          console.log(data.result)
           displayResult(data);
-          drawEcharts();
+          result = data.result;
+          console.log(result)
+          // drawEcharts();
         });
     })
     .catch(err => {
@@ -158,33 +167,10 @@ function show(el) {
   el.classList.remove("hidden");
 }
 
-function drawEcharts(){
-  // const s = document.createElement('script');
-  //     s.type = 'text/javascript';
-  //     s.src = 'https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js';
-  //     document.body.appendChild(s);
-      var myChart = this.$echarts.init(document.getElementById('echarts'));
-      // let myChart = this.$echarts.init(this.$refs.echarts);
-        // 指定图表的配置项和数据
-        var option = {
-            title: {
-                text: '第一个 ECharts 实例'
-            },
-            tooltip: {},
-            legend: {
-                data:['销量']
-            },
-            xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-            },
-            yAxis: {},
-            series: [{
-                name: '销量',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
-            }]
-        };
- 
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-}
+// function drawEcharts(data){
+//   console.log(data)
+// }
+
+// module.exports = {
+//   drawEcharts
+// }
