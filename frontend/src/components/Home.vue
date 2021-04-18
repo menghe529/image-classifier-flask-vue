@@ -3,14 +3,8 @@
 <template>
 <div>
 <div class="main">
-  <!-- <Echart></Echart> -->
-
   <div class="title">
     <h3>Image Classifier</h3>
-
-    <!-- <p>
-      <small>A web app demo</small>
-    </p> -->
   </div>
 
   <div class="panel">
@@ -33,8 +27,13 @@
     </svg>
   </div>
 
-  <button v-on:click="draw" >drawChart</button>
-  <div id="mychart" :style="{width: '300px', height: '300px'}"></div>
+  <div>
+    <button v-on:click="draw" >drawChart</button>
+    <div id="mychart" :style="{width: '300px', height: '300px'}"></div>
+  </div>
+  <div class="historyTable">
+    
+  </div>
 </div>
 
 
@@ -43,12 +42,9 @@
 </template>
 
 <script>
-  // import * as from "../js/Home.js"
-  // import Echart from "./Echart.vue"
   export default{
     data(){
       return{
-        // isShow: false,
         result: []
       }
     },
@@ -99,7 +95,6 @@
 				  data:['概率']
 			  },
 			  xAxis: {
-				  // data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
           data: xdata,
           axisLabel:{
             interval:0,
@@ -123,9 +118,7 @@
 		  myChart.setOption(option);
 		  }
     }
-    // components:{
-    //   Echart
-    // }
+
   }
 </script>
 

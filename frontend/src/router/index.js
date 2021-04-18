@@ -17,11 +17,17 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
+import Product from '@/components/Product'   // add
 
 const routerOptions = [
   { path: '/', component: 'Home' },
-  { path: '*', component: 'NotFound' }
+  { path: '*', component: 'NotFound' },
   // { path: '/about', component: 'About' }
+  {                                              
+    path: '/product',                    
+    name: 'Product',                   
+    component: 'Product'           
+  }
 ]
 
 const routes = routerOptions.map(route => {

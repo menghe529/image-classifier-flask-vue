@@ -5,6 +5,10 @@ import App from './App'
 import router from './router'
 // import echarts from 'echarts'
 import * as echarts from 'echarts'
+import $ from 'jquery'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.min'
+
 Vue.prototype.$echarts = echarts
 
 Vue.config.productionTip = false
